@@ -1,23 +1,23 @@
-# Bot Weather In... (v.0.1  2.11.2020)
+# Bot Weather In... (v.0.1.1  4.11.2020)
 
 import config
-import pyowm
+from pyowm.owm import OWM
 import telebot
 
 
 bot = telebot.TeleBot(config.token)
-owm = pyowm.OWM('b6374ac85952d51a4daa5baf0f867ec4')
+owm = OWM('b6374ac85952d51a4daa5baf0f867ec4', config.config_dict)
 mgr = owm.weather_manager()
 
 
 @bot.message_handler(content_types=['text'])
 def send_welcome(message):
     observation = mgr.weather_at_place(message.text)
-    w = observation.get_weather()
+    w = observation.weather
     wind_dict_in_meters_per_sec = w.wind()
     temp = w.temperature('celsius')["temp"]
 
-    answer = "В городе " + message.text + " так то " + "\n"
+    answer = "В городе " + message.text + " так то " + w.detailed_status + "\n"
     answer += "Ветер сегодня " + str(wind_dict_in_meters_per_sec.get('speed')) + " метра в секунду" + "\n"
     answer += "Тепература сейчас где то " + str(temp) + "°C" + "\n\n"
 
