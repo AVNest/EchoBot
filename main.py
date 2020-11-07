@@ -1,12 +1,13 @@
 # Bot Weather In... (v.0.1.1  4.11.2020)
 
+import settings
 import config
 from pyowm.owm import OWM
 import telebot
 
 
 bot = telebot.TeleBot(config.token)
-owm = OWM('b6374ac85952d51a4daa5baf0f867ec4', config.config_dict)
+owm = OWM('b6374ac85952d51a4daa5baf0f867ec4', config.config_dict) # your token in pyOWN
 mgr = owm.weather_manager()
 
 

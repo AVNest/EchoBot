@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 
+import settings
 from pyowm.utils.config import get_default_config
 
 config_dict = get_default_config()
 config_dict['language'] = 'ru'
-token = "1490602499:AAEZ-h2mGwR9X3UR9neQnCi7xKkDl6SMRUY"
+token = settings.TOKEN_TG  # token = 'your token'
